@@ -1,67 +1,43 @@
 package de.egatlov.trustbot_api.connection;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.Socket;
-import java.util.Stack;
+import java.util.Queue;
 
 /**
- * IRCConnection.java is an implementation of Connection. It handles all that
- * akward Buffer stuff, which is mostly uninteresting.
+ * IRCConnection.java is an implementation of SimpleConnection. It handles all
+ * that akward Buffer stuff, which is mostly uninteresting.
  * 
  * Created at: 23.02.2017
  * 
  * @author egatlov
  */
-public final class IRCConnection implements Connection {
-
-	private final int port;
-	private final String host;
-	private BufferedWriter writer;
-	private BufferedReader reader;
-	private final Stack<ChatCommand> sendCommands;
+public final class IRCConnection extends SimpleConnection {
 
 	public IRCConnection(String host, int port) {
-		this.host = host;
-		this.port = port;
-		this.sendCommands = new Stack<>();
+		super(host, port);
 	}
 
-	@Override
-	public void connect(String oauthKey, String name) throws Exception {
-
-		@SuppressWarnings("resource")
-		Socket socket = new Socket(host, port);
-		this.writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-		this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		this.writer.write("PASS " + oauthKey + "\r\n");
-		this.writer.write("NICK " + name + "\r\n");
-		this.writer.write("USER " + "something need to be here" + " \r\n"); // TODO
-		this.writer.flush();
-
-	}
-
-	@Override
-	public void disconnect() {
-		// TODO disconnect from channel and chat
-
-	}
-
+	/**
+	 * @param message
+	 *            - String message the message to write
+	 */
 	@Override
 	public void write(String message) {
 		// TODO write something in chat
 	}
 
 	@Override
-	public Stack<ChatCommand> commands() {
+	public Queue<ChatCommand> commands() {
 		return sendCommands;
 	}
 
-	@Override
-	public void start() {
-		// TODO start listening to chat and bild commands in stack
+	/**
+	 * Handle Ping and Pong and build {@code ChatCommands} out of "!"-commands
+	 * to store them in {@code sendCommands}-Queue
+	 */
+	protected void listenToChat() {
+		// TODO read line from chat and:
+		// - handle ping and pong
+		// - handle "!command"-commands and build chatcommands in queue
 	}
 
 }

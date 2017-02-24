@@ -4,8 +4,8 @@ import de.egatlov.trustbot_api.bot.config.BotConfig;
 import de.egatlov.trustbot_api.connection.IRCConnection;
 
 /**
- * TrustBot.java is an implementation of an Bot which simply
- * shows how to do it right.
+ * TrustBot.java is an implementation of an Bot which simply shows how to do it
+ * right.
  * 
  * Created at: 23.02.2017
  * 
@@ -23,12 +23,13 @@ public final class TrustBot implements Bot {
 
 	@Override
 	public void connect() throws Exception {
-		this.connection.connect(config.oauthKey(), config.name());
+		this.connection.start(config.oauthKey(), config.name());
 	}
 
 	@Override
 	public void disconnect() {
 		// TODO
+		this.connection.stop();
 	}
 
 	@Override
