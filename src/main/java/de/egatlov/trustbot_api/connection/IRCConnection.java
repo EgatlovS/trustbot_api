@@ -1,43 +1,78 @@
 package de.egatlov.trustbot_api.connection;
 
-import java.util.Queue;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
+
+import de.egatlov.trustbot_api.bot.BotExecution;
+import de.egatlov.trustbot_api.bot.config.ConnectionConfiguration;
 
 /**
- * IRCConnection.java is an implementation of SimpleConnection. It handles all
- * that akward Buffer stuff, which is mostly uninteresting.
+ * IRCConnection.java describes an IRC-Connection with an implementation of the
+ * common method, which are described in Connection.java
  * 
  * Created at: 23.02.2017
  * 
  * @author egatlov
  */
-public final class IRCConnection extends SimpleConnection {
+public class IRCConnection implements Connection {
 
-	public IRCConnection(String host, int port) {
-		super(host, port);
-	}
+	private ConnectionConfiguration config;
+	private final BotExecution botExecution;
+	private Socket socket;
+	private BufferedWriter writer;
+	private BufferedReader reader;
 
-	/**
-	 * @param message
-	 *            - String message the message to write
-	 */
-	@Override
-	public void write(String message) {
-		// TODO write something in chat
+	public IRCConnection(ConnectionConfiguration config, BotExecution botExecution) {
+		this.botExecution = botExecution;
+		this.config = config;
 	}
 
 	@Override
-	public Queue<ChatCommand> commands() {
-		return sendCommands;
+	public void start() throws Exception {
+
+		this.socket = new Socket(config.host(), config.port());
+		this.writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+		this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		this.writer.write("PASS " + config.oauthKey() + "\r\n");
+		this.writer.write("NICK " + config.name() + "\r\n");
+		// For getting more precise information about commands which where send
+		this.writer.write("CAP REQ :twitch.tv/commands \r\n");
+		// For getting all information about channel joins parts and modes
+		// u can also receive the names of members in channel on join
+		this.writer.write("CAP REQ :twitch.tv/membership \r\n");
+		this.writer.flush();
+
+		this.join();
+
+		botExecution.start(reader);
 	}
 
-	/**
-	 * Handle Ping and Pong and build {@code ChatCommands} out of "!"-commands
-	 * to store them in {@code sendCommands}-Queue
-	 */
-	protected void listenToChat() {
-		// TODO read line from chat and:
-		// - handle ping and pong
-		// - handle "!command"-commands and build chatcommands in queue
+	@Override
+	public void privmsg(String message) throws Exception {
+		this.writer.write("PRIVMSG #" + config.channel() + ":" + message);
+		this.writer.flush();
+	}
+
+	@Override
+	public void join() throws Exception {
+		this.writer.write("JOIN #" + config.channel());
+		this.writer.flush();
+	}
+
+	@Override
+	public void part() throws Exception {
+		this.writer.write("JOIN #" + config.channel());
+		this.writer.flush();
+	}
+
+	@Override
+	public void stop() throws Exception {
+		this.botExecution.stop();
+		this.part();
+		this.socket.close();
 	}
 
 }

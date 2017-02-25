@@ -1,24 +1,22 @@
 package de.egatlov.trustbot_api.connection;
 
-import java.util.Queue;
-import java.util.concurrent.Callable;
-
 /**
- * Connection.java describes an connection and what methods it should
- * provide.
+ * Connection.java describes an connection and what methods it should provide.
  * 
  * Created at: 23.02.2017
  * 
  * @author egatlov
  */
-public interface Connection extends Callable<Void> {
+public interface Connection {
 
-	void start(String oauthKey, String name) throws Exception;
+	void start() throws Exception;
 
-	void stop();
+	void stop() throws Exception;
 
-	void write(String message);
+	void join() throws Exception;
 
-	Queue<ChatCommand> commands();
+	void part() throws Exception;
+
+	void privmsg(String message) throws Exception;
 
 }
