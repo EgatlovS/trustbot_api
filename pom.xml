@@ -15,6 +15,13 @@
 
 	<dependencies>
 
+		<!-- Rest-Easy-Client -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+			<version>3.1.0.Final</version>
+		</dependency>
+
 		<!-- TEST -->
 		<!-- Fluent Api -->
 		<dependency>
