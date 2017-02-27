@@ -1,16 +1,18 @@
 package de.egatlov.trustbot_api.bot;
 
 import java.io.Reader;
+import java.io.Writer;
 
 /**
  * BotExecution.java is a Wrapper for bots to execute them.
  * 
  * Created at: 25.02.2017
+ * 
  * @author egatlov
  */
 public interface BotExecution {
 
-	void start(Reader reader);
+	void start(Reader reader, Writer writer);
 
 	void stop();
 
@@ -18,9 +20,11 @@ public interface BotExecution {
 
 		private boolean running;
 		private final Reader reader;
+		private final Writer writer;
 
-		public SimpleBot(Reader reader) {
+		public SimpleBot(Reader reader, Writer writer) {
 			this.reader = reader;
+			this.writer = writer;
 		}
 
 		@Override
@@ -38,5 +42,5 @@ public interface BotExecution {
 		}
 
 	}
-	
+
 }

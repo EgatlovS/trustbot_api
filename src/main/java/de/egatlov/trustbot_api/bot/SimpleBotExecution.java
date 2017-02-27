@@ -1,6 +1,7 @@
 package de.egatlov.trustbot_api.bot;
 
 import java.io.Reader;
+import java.io.Writer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -27,9 +28,9 @@ public final class SimpleBotExecution implements BotExecution {
 	}
 
 	@Override
-	public void start(Reader reader) {
+	public void start(Reader reader, Writer writer) {
 		if (bot == null) {
-			this.bot = new BotExecution.SimpleBot(reader);
+			this.bot = new BotExecution.SimpleBot(reader, writer);
 		}
 		executor.execute(bot);
 	}

@@ -47,7 +47,7 @@ public class IRCConnection implements Connection {
 
 		this.join();
 
-		botExecution.start(reader);
+		botExecution.start(reader, writer);
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class IRCConnection implements Connection {
 
 	@Override
 	public void part() throws Exception {
-		this.writer.write("JOIN #" + config.channel());
+		this.writer.write("PART #" + config.channel());
 		this.writer.flush();
 	}
 

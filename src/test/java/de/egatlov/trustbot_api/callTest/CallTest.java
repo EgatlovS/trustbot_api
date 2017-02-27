@@ -18,5 +18,10 @@ public class CallTest {
 		Block result = pojo.blockUser("OptimusPrime", "Decepticons", "clientId", "accessToken");
 		System.out.println(result);
 	}
+	
+	public void test2(){
+		TwitchBlocks blockApi = TwitchBlocks.APIClient.newClient();
+		blockApi.blockUser("OptimusPrime", "Decepticons", "clientId", "accessToken");
+	}
 
 }
