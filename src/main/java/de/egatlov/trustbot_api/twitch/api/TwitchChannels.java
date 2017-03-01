@@ -1,6 +1,5 @@
 package de.egatlov.trustbot_api.twitch.api;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -10,12 +9,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 import de.egatlov.trustbot_api.twitch.models.Channel;
 import de.egatlov.trustbot_api.twitch.models.ChannelChange;
@@ -24,9 +18,7 @@ import de.egatlov.trustbot_api.twitch.models.Teams;
 import de.egatlov.trustbot_api.twitch.models.Users;
 import de.egatlov.trustbot_api.twitch.models.Videos;
 
-@Consumes(MediaType.APPLICATION_JSON)
-@Path("/kraken")
-public interface TwitchChannels {
+public interface TwitchChannels extends TwitchAPI {
 
 	/**
 	 * Get a channel Object.
@@ -232,16 +224,5 @@ public interface TwitchChannels {
 	@Path("/channels/{channel}/teams")
 	Teams getChannelTeams(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId,
 			@HeaderParam("Authorization") String accessToken);
-
-	class APIClient {
-
-		public static TwitchChannels newClient() {
-			Client client = ClientBuilder.newClient();
-			String url = "https://api.twitch.tv";
-			ResteasyWebTarget target = (ResteasyWebTarget) client.target(url);
-			return target.proxy(TwitchChannels.class);
-		}
-
-	}
 
 }

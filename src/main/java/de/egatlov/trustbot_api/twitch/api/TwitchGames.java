@@ -1,5 +1,5 @@
 package de.egatlov.trustbot_api.twitch.api;
 
-public interface TwitchGames {
+public interface TwitchGames extends TwitchAPI {
 
 }

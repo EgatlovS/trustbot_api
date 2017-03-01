@@ -1,6 +1,5 @@
 package de.egatlov.trustbot_api.twitch.api;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -9,19 +8,12 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 import de.egatlov.trustbot_api.twitch.models.Block;
 import de.egatlov.trustbot_api.twitch.models.Blocks;
 
-@Consumes(MediaType.APPLICATION_JSON)
-@Path("/kraken")
-public interface TwitchBlocks {
+public interface TwitchBlocks extends TwitchAPI {
 
 	/**
 	 * Returns a list of blocks objects on :user's block list. List sorted by
@@ -44,8 +36,8 @@ public interface TwitchBlocks {
 	@GET
 	@Path("/users/{username}/blocks")
 	Blocks getBlocks(@PathParam("username") String username, @HeaderParam("Client-ID") String clientId,
-			@HeaderParam("Authorization") String accessToken,
-			@DefaultValue("25") @QueryParam("limit") int limit, @DefaultValue("0") @QueryParam("offset") int offset);
+			@HeaderParam("Authorization") String accessToken, @DefaultValue("25") @QueryParam("limit") int limit,
+			@DefaultValue("0") @QueryParam("offset") int offset);
 
 	/**
 	 * Adds :target to :user's block list. :user is the authenticated user and
@@ -92,14 +84,4 @@ public interface TwitchBlocks {
 	Response unblockUser(@PathParam("username") String username, @PathParam("targetUsername") String targetUsername,
 			@HeaderParam("Client-ID") String clientId, @HeaderParam("Authorization") String accessToken);
 
-	class APIClient {
-
-		public static TwitchBlocks newClient() {
-			Client client = ClientBuilder.newClient();
-			String url = "https://api.twitch.tv";
-			ResteasyWebTarget target = (ResteasyWebTarget) client.target(url);
-			return target.proxy(TwitchBlocks.class);
-		}
-
-	}
 }
