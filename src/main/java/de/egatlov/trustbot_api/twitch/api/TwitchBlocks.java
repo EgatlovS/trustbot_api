@@ -43,8 +43,8 @@ public interface TwitchBlocks {
 	 */
 	@GET
 	@Path("/users/{username}/blocks")
-	Blocks getBlocks(@PathParam("username") String username, @HeaderParam("Client-ID: ") String clientId,
-			@HeaderParam("Authorization: OAuth ") String accessToken,
+	Blocks getBlocks(@PathParam("username") String username, @HeaderParam("Client-ID") String clientId,
+			@HeaderParam("Authorization") String accessToken,
 			@DefaultValue("25") @QueryParam("limit") int limit, @DefaultValue("0") @QueryParam("offset") int offset);
 
 	/**
@@ -67,7 +67,7 @@ public interface TwitchBlocks {
 	@PUT
 	@Path("/users/{username}/blocks/{targetUsername}")
 	Block blockUser(@PathParam("username") String username, @PathParam("targetUsername") String targetUsername,
-			@HeaderParam("Client-ID: ") String clientId, @HeaderParam("Authorization: OAuth ") String accessToken);
+			@HeaderParam("Client-ID") String clientId, @HeaderParam("Authorization") String accessToken);
 
 	/**
 	 * Removes :target from :user's block list. :user is the authenticated user
@@ -90,7 +90,7 @@ public interface TwitchBlocks {
 	@DELETE
 	@Path("/users/{username}/blocks/{targetUsername}")
 	Response unblockUser(@PathParam("username") String username, @PathParam("targetUsername") String targetUsername,
-			@HeaderParam("Client-ID: ") String clientId, @HeaderParam("Authorization: OAuth ") String accessToken);
+			@HeaderParam("Client-ID") String clientId, @HeaderParam("Authorization") String accessToken);
 
 	class APIClient {
 

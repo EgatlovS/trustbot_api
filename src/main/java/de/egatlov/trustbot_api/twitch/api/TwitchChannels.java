@@ -40,7 +40,7 @@ public interface TwitchChannels {
 	 */
 	@GET
 	@Path("/channels/{channel}")
-	Channel getChannel(@PathParam("channel") String channel, @HeaderParam("Client-ID: ") String clientId);
+	Channel getChannel(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId);
 
 	/**
 	 * Get a channel object of the authenticated user. Channel object includes a
@@ -61,7 +61,7 @@ public interface TwitchChannels {
 	@GET
 	@Path("/channel/{channel}")
 	Channel getChannelFromAuthenticatedUser(@PathParam("channel") String channel,
-			@HeaderParam("Client-ID: ") String clientId, @HeaderParam("Authorization: OAuth ") String accessToken);
+			@HeaderParam("Client-ID") String clientId, @HeaderParam("Authorization") String accessToken);
 
 	/**
 	 * Get a list of videos ordered by time of creation, starting with the most
@@ -87,7 +87,7 @@ public interface TwitchChannels {
 	 */
 	@GET
 	@Path("/channels/{channel}/videos")
-	Videos getVideoFromChannel(@PathParam("channel") String channel, @HeaderParam("Client-ID: ") String clientId,
+	Videos getVideoFromChannel(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId,
 			@DefaultValue("10") @QueryParam("limit") int limit, @DefaultValue("0") @QueryParam("offset") int offset,
 			@DefaultValue("false") @QueryParam("broadcasts") boolean broadcasts,
 			@DefaultValue("false") @QueryParam("hls") boolean hls);
@@ -118,7 +118,7 @@ public interface TwitchChannels {
 	 */
 	@GET
 	@Path("/channels/{channel}/follows")
-	Follows getFollowsFromChannel(@PathParam("channel") String channel, @HeaderParam("Client-ID: ") String clientId,
+	Follows getFollowsFromChannel(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId,
 			@DefaultValue("25") @QueryParam("limit") int limit, @DefaultValue("0") @QueryParam("offset") int offset,
 			@QueryParam("cursor") String cursor, @DefaultValue("desc") @QueryParam("direction") String direction);
 
@@ -138,8 +138,8 @@ public interface TwitchChannels {
 	 */
 	@GET
 	@Path("/channels/{channel}/editors")
-	Users getEditorsFromChannel(@PathParam("channel") String channel, @HeaderParam("Client-ID: ") String clientId,
-			@HeaderParam("Authorization: OAuth ") String accessToken);
+	Users getEditorsFromChannel(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId,
+			@HeaderParam("Authorization") String accessToken);
 
 	/**
 	 * Update channel's properties.
@@ -168,7 +168,7 @@ public interface TwitchChannels {
 	@PUT
 	@Path("/channels/{channel}")
 	Channel updateChannel(@PathParam("channel") String channel, ChannelChange payload,
-			@HeaderParam("Client-ID: ") String clientId, @HeaderParam("Authorization: OAuth ") String accessToken);
+			@HeaderParam("Client-ID") String clientId, @HeaderParam("Authorization") String accessToken);
 
 	/**
 	 * Resets channel's stream key.
@@ -186,8 +186,8 @@ public interface TwitchChannels {
 	 */
 	@DELETE
 	@Path("/channels/{channel}/stream_key")
-	Channel resetStreamKey(@PathParam("channel") String channel, @HeaderParam("Client-ID: ") String clientId,
-			@HeaderParam("Authorization: OAuth ") String accessToken);
+	Channel resetStreamKey(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId,
+			@HeaderParam("Authorization") String accessToken);
 
 	/**
 	 * Start commercial on channel with the specified {@code length}.
@@ -212,7 +212,7 @@ public interface TwitchChannels {
 	@POST
 	@Path("/channels/{channel}/commercial")
 	Response startCommercial(@PathParam("channel") String channel, int length,
-			@HeaderParam("Client-ID: ") String clientId, @HeaderParam("Authorization: OAuth ") String accessToken);
+			@HeaderParam("Client-ID") String clientId, @HeaderParam("Authorization") String accessToken);
 
 	/**
 	 * Returns a list of team objects :channel belongs to.
@@ -230,8 +230,8 @@ public interface TwitchChannels {
 	 */
 	@GET
 	@Path("/channels/{channel}/teams")
-	Teams getChannelTeams(@PathParam("channel") String channel, @HeaderParam("Client-ID: ") String clientId,
-			@HeaderParam("Authorization: OAuth ") String accessToken);
+	Teams getChannelTeams(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId,
+			@HeaderParam("Authorization") String accessToken);
 
 	class APIClient {
 
