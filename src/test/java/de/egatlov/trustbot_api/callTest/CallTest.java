@@ -1,7 +1,7 @@
 package de.egatlov.trustbot_api.callTest;
 
-import de.egatlov.trustbot_api.twitch.api.APIClient;
 import de.egatlov.trustbot_api.twitch.api.BlocksAPI;
+import de.egatlov.trustbot_api.twitch.api.client.APIClient;
 
 public class CallTest {
 
