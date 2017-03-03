@@ -12,20 +12,16 @@ import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
  * 
  * @author egatlov
  */
-public interface APIClient {
+public final class APIClient {
 
-	class Build {
+	public static <T extends TwitchAPI> T buildFrom(Class<T> clazz) {
+		return buildFrom(clazz, "https://api.twitch.tv");
+	}
 
-		public static <T extends TwitchAPI> T from(Class<T> clazz) {
-			return from(clazz, "https://api.twitch.tv");
-		}
-
-		public static <T extends TwitchAPI> T from(Class<T> clazz, String url) {
-			Client client = ClientBuilder.newClient();
-			ResteasyWebTarget target = (ResteasyWebTarget) client.target(url);
-			return target.proxy(clazz);
-		}
-
+	public static <T extends TwitchAPI> T buildFrom(Class<T> clazz, String url) {
+		Client client = ClientBuilder.newClient();
+		ResteasyWebTarget target = (ResteasyWebTarget) client.target(url);
+		return target.proxy(clazz);
 	}
 
 }

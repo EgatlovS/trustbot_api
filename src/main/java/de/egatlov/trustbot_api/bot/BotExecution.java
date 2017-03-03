@@ -1,7 +1,8 @@
 package de.egatlov.trustbot_api.bot;
 
-import java.io.Reader;
-import java.io.Writer;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 /**
  * BotExecution.java is a Wrapper for bots to execute them.
@@ -12,17 +13,17 @@ import java.io.Writer;
  */
 public interface BotExecution {
 
-	void start(Reader reader, Writer writer);
+	void start(BufferedReader reader, BufferedWriter writer);
 
 	void stop();
 
 	class SimpleBot implements Bot {
 
 		private boolean running;
-		private final Reader reader;
-		private final Writer writer;
+		private final BufferedReader reader;
+		private final BufferedWriter writer;
 
-		public SimpleBot(Reader reader, Writer writer) {
+		public SimpleBot(BufferedReader reader, BufferedWriter writer) {
 			this.reader = reader;
 			this.writer = writer;
 		}
@@ -31,14 +32,30 @@ public interface BotExecution {
 		public void run() {
 			this.running = true;
 			while (running) {
-				// 1. handle ping and pong
-				// 2. handle "!"-commands and build chatcommands in queue
+				String nextLine = nextLine();
+				if (nextLine != null) {
+					pingPong(nextLine);
+				}
 			}
 		}
 
 		@Override
 		public void stop() {
 			this.running = false;
+		}
+
+		private String nextLine() {
+			String nextLine = null;
+			try {
+				nextLine = reader.readLine();
+			} catch (IOException e) {
+				// should never throw an exception
+			}
+			return nextLine;
+		}
+
+		private void pingPong(String line) {
+			// TODO handle ping and pong
 		}
 
 	}

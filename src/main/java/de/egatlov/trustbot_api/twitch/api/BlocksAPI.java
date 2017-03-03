@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 import de.egatlov.trustbot_api.twitch.models.Block;
 import de.egatlov.trustbot_api.twitch.models.Blocks;
 
-public interface TwitchBlocks extends TwitchAPI {
+public interface BlocksAPI extends TwitchAPI {
 
 	/**
 	 * Returns a list of blocks objects on :user's block list. List sorted by

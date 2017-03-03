@@ -1,5 +1,5 @@
 package de.egatlov.trustbot_api.twitch.api;
 
-public interface TwitchSearch extends TwitchAPI {
+public interface RootAPI extends TwitchAPI {
 
 }

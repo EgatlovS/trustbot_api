@@ -18,7 +18,7 @@ import de.egatlov.trustbot_api.twitch.models.Teams;
 import de.egatlov.trustbot_api.twitch.models.Users;
 import de.egatlov.trustbot_api.twitch.models.Videos;
 
-public interface TwitchChannels extends TwitchAPI {
+public interface ChannelsAPI extends TwitchAPI {
 
 	/**
 	 * Get a channel Object.
