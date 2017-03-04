@@ -7,4 +7,4 @@ I also implemented a Client-Framework, which is applicable of all methods provid
 >**What leads me to write a new Java-API for a Twitch-Chat-Bot?**  
 >A friend of mine, who started streaming, wanted to write his own ChatBot and asked for some help.  
 >Every API I saw was simply not readable or just processed the Bot in a synchronous approach.
->I need to confess I didn't search a lot...! So I started to write an API for him by myself.
+>I need to confess I didn't search a lot...! So I started to write an API for that by myself.
