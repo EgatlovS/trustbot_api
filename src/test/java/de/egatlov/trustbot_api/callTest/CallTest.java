@@ -7,12 +7,12 @@ public class CallTest {
 
 	public void test() {
 		BlocksAPI blockApi = APIClient.buildFrom(BlocksAPI.class, "https://api.twitch.tv");
-		blockApi.blockUser("OptimusPrime", "Decepticons", "clientId", "accessToken");
+		blockApi.blockUser("OptimusPrime", "Decepticons", "accessToken");
 	}
 
 	public void test2() {
 		BlocksAPI blockApi = APIClient.buildFrom(BlocksAPI.class);
-		blockApi.blockUser("OptimusPrime", "Decepticons", "clientId", "accessToken");
+		blockApi.blockUser("OptimusPrime", "Decepticons", "accessToken");
 	}
 
 }

@@ -2,7 +2,8 @@ package de.egatlov.trustbot_api.bot;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * BotExecution.java is a Wrapper for bots to execute them.
@@ -17,47 +18,34 @@ public interface BotExecution {
 
 	void stop();
 
-	class SimpleBot implements Bot {
+	class Simple implements BotExecution {
 
-		private boolean running;
-		private final BufferedReader reader;
-		private final BufferedWriter writer;
+		private Bot bot;
+		private final ExecutorService executor;
 
-		public SimpleBot(BufferedReader reader, BufferedWriter writer) {
-			this.reader = reader;
-			this.writer = writer;
+		public Simple(Bot bot) {
+			this.executor = Executors.newFixedThreadPool(1);
+			this.bot = bot;
+		}
+
+		public Simple() {
+			this(null);
 		}
 
 		@Override
-		public void run() {
-			this.running = true;
-			while (running) {
-				String nextLine = nextLine();
-				if (nextLine != null) {
-					pingPong(nextLine);
-				}
+		public void start(BufferedReader reader, BufferedWriter writer) {
+			if (bot == null) {
+				this.bot = new Bot.Simple(reader, writer);
 			}
+			executor.execute(bot);
 		}
 
 		@Override
 		public void stop() {
-			this.running = false;
-		}
-
-		private String nextLine() {
-			String nextLine = null;
-			try {
-				nextLine = reader.readLine();
-			} catch (IOException e) {
-				// should never throw an exception
-			}
-			return nextLine;
-		}
-
-		private void pingPong(String line) {
-			// TODO handle ping and pong
+			this.bot.stop();
+			this.executor.shutdown();
 		}
 
 	}
-
+	
 }

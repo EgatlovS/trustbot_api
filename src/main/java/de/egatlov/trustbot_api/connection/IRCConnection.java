@@ -8,6 +8,7 @@ import java.net.Socket;
 
 import de.egatlov.trustbot_api.bot.BotExecution;
 import de.egatlov.trustbot_api.bot.config.ConnectionConfiguration;
+import de.egatlov.trustbot_api.constants.EndOfLine;
 
 /**
  * IRCConnection.java describes an IRC-Connection with an implementation of the
@@ -19,7 +20,8 @@ import de.egatlov.trustbot_api.bot.config.ConnectionConfiguration;
  */
 public class IRCConnection implements Connection {
 
-	private ConnectionConfiguration config;
+	private final ConnectionConfiguration config;
+	private final EndOfLine lineEnd;
 	private final BotExecution botExecution;
 	private Socket socket;
 	private BufferedWriter writer;
@@ -28,6 +30,7 @@ public class IRCConnection implements Connection {
 	public IRCConnection(ConnectionConfiguration config, BotExecution botExecution) {
 		this.botExecution = botExecution;
 		this.config = config;
+		this.lineEnd = new EndOfLine();
 	}
 
 	@Override
@@ -36,13 +39,13 @@ public class IRCConnection implements Connection {
 		this.socket = new Socket(config.host(), config.port());
 		this.writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 		this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		this.writer.write("PASS " + config.oauthKey() + "\r\n");
-		this.writer.write("NICK " + config.name() + "\r\n");
+		this.writer.write("PASS " + config.oauthKey() + lineEnd);
+		this.writer.write("NICK " + config.name() + lineEnd);
 		// For getting more precise information about commands which where send
-		this.writer.write("CAP REQ :twitch.tv/commands \r\n");
+		this.writer.write("CAP REQ :twitch.tv/commands " + lineEnd);
 		// For getting all information about channel joins parts and modes
 		// u can also receive the names of members in channel on join
-		this.writer.write("CAP REQ :twitch.tv/membership \r\n");
+		this.writer.write("CAP REQ :twitch.tv/membership " + lineEnd);
 		this.writer.flush();
 
 		this.join();
@@ -52,19 +55,19 @@ public class IRCConnection implements Connection {
 
 	@Override
 	public void privmsg(String message) throws Exception {
-		this.writer.write("PRIVMSG #" + config.channel() + ":" + message);
+		this.writer.write("PRIVMSG #" + config.channel() + ":" + message + " " + lineEnd);
 		this.writer.flush();
 	}
 
 	@Override
 	public void join() throws Exception {
-		this.writer.write("JOIN #" + config.channel());
+		this.writer.write("JOIN #" + config.channel() + " " + lineEnd);
 		this.writer.flush();
 	}
 
 	@Override
 	public void part() throws Exception {
-		this.writer.write("PART #" + config.channel());
+		this.writer.write("PART #" + config.channel() + " " + lineEnd);
 		this.writer.flush();
 	}
 

@@ -21,9 +21,6 @@ public interface BlocksAPI extends TwitchAPI {
 	 * 
 	 * @param username
 	 *            - your twitch username
-	 * @param clientId
-	 *            - the clientid you get if you registrate your program on
-	 *            twitch
 	 * @param accessToken
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
@@ -35,9 +32,8 @@ public interface BlocksAPI extends TwitchAPI {
 	 */
 	@GET
 	@Path("/users/{username}/blocks")
-	Blocks getBlocks(@PathParam("username") String username, @HeaderParam("Client-ID") String clientId,
-			@HeaderParam("Authorization") String accessToken, @DefaultValue("25") @QueryParam("limit") int limit,
-			@DefaultValue("0") @QueryParam("offset") int offset);
+	Blocks getBlocks(@PathParam("username") String username, @HeaderParam("Authorization") String accessToken,
+			@DefaultValue("25") @QueryParam("limit") int limit, @DefaultValue("0") @QueryParam("offset") int offset);
 
 	/**
 	 * Adds :target to :user's block list. :user is the authenticated user and
@@ -47,9 +43,6 @@ public interface BlocksAPI extends TwitchAPI {
 	 *            - your twitch username
 	 * @param targetUsername
 	 *            - the user to block
-	 * @param clientId
-	 *            - the clientid you get if you registrate your program on
-	 *            twitch
 	 * @param accessToken
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
@@ -59,7 +52,7 @@ public interface BlocksAPI extends TwitchAPI {
 	@PUT
 	@Path("/users/{username}/blocks/{targetUsername}")
 	Block blockUser(@PathParam("username") String username, @PathParam("targetUsername") String targetUsername,
-			@HeaderParam("Client-ID") String clientId, @HeaderParam("Authorization") String accessToken);
+			@HeaderParam("Authorization") String accessToken);
 
 	/**
 	 * Removes :target from :user's block list. :user is the authenticated user
@@ -69,9 +62,6 @@ public interface BlocksAPI extends TwitchAPI {
 	 *            - your twitch username
 	 * @param targetUsername
 	 *            - the user to unblock
-	 * @param clientId
-	 *            - the clientid you get if you registrate your program on
-	 *            twitch
 	 * @param accessToken
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
@@ -82,6 +72,6 @@ public interface BlocksAPI extends TwitchAPI {
 	@DELETE
 	@Path("/users/{username}/blocks/{targetUsername}")
 	Response unblockUser(@PathParam("username") String username, @PathParam("targetUsername") String targetUsername,
-			@HeaderParam("Client-ID") String clientId, @HeaderParam("Authorization") String accessToken);
+			@HeaderParam("Authorization") String accessToken);
 
 }

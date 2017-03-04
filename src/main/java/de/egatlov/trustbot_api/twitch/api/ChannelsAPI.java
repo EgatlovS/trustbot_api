@@ -25,14 +25,11 @@ public interface ChannelsAPI extends TwitchAPI {
 	 * 
 	 * @param channel
 	 *            - the channelname
-	 * @param clientId
-	 *            - the clientid you get if you registrate your program on
-	 *            twitch
 	 * @return Returns a channel object.
 	 */
 	@GET
 	@Path("/channels/{channel}")
-	Channel getChannel(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId);
+	Channel getChannel(@PathParam("channel") String channel);
 
 	/**
 	 * Get a channel object of the authenticated user. Channel object includes a
@@ -40,9 +37,6 @@ public interface ChannelsAPI extends TwitchAPI {
 	 * 
 	 * @param channel
 	 *            - the channelname
-	 * @param clientId
-	 *            - the clientid you get if you registrate your program on
-	 *            twitch
 	 * @param accessToken
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
@@ -53,7 +47,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	@GET
 	@Path("/channel/{channel}")
 	Channel getChannelFromAuthenticatedUser(@PathParam("channel") String channel,
-			@HeaderParam("Client-ID") String clientId, @HeaderParam("Authorization") String accessToken);
+			@HeaderParam("Authorization") String accessToken);
 
 	/**
 	 * Get a list of videos ordered by time of creation, starting with the most
@@ -61,9 +55,6 @@ public interface ChannelsAPI extends TwitchAPI {
 	 * 
 	 * @param channel
 	 *            - the channelname
-	 * @param clientId
-	 *            - the clientid you get if you registrate your program on
-	 *            twitch
 	 * @param limit
 	 *            - Maximum number of objects in array. Default is 10. Maximum
 	 *            is 100.
@@ -79,8 +70,8 @@ public interface ChannelsAPI extends TwitchAPI {
 	 */
 	@GET
 	@Path("/channels/{channel}/videos")
-	Videos getVideoFromChannel(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId,
-			@DefaultValue("10") @QueryParam("limit") int limit, @DefaultValue("0") @QueryParam("offset") int offset,
+	Videos getVideoFromChannel(@PathParam("channel") String channel, @DefaultValue("10") @QueryParam("limit") int limit,
+			@DefaultValue("0") @QueryParam("offset") int offset,
 			@DefaultValue("false") @QueryParam("broadcasts") boolean broadcasts,
 			@DefaultValue("false") @QueryParam("hls") boolean hls);
 
@@ -89,9 +80,6 @@ public interface ChannelsAPI extends TwitchAPI {
 	 * 
 	 * @param channel
 	 *            - the channelname
-	 * @param clientId
-	 *            - the clientid you get if you registrate your program on
-	 *            twitch
 	 * @param limit
 	 *            - Maximum number of objects in array. Default is 25. Maximum
 	 *            is 100.
@@ -110,7 +98,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 */
 	@GET
 	@Path("/channels/{channel}/follows")
-	Follows getFollowsFromChannel(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId,
+	Follows getFollowsFromChannel(@PathParam("channel") String channel,
 			@DefaultValue("25") @QueryParam("limit") int limit, @DefaultValue("0") @QueryParam("offset") int offset,
 			@QueryParam("cursor") String cursor, @DefaultValue("desc") @QueryParam("direction") String direction);
 
@@ -119,9 +107,6 @@ public interface ChannelsAPI extends TwitchAPI {
 	 * 
 	 * @param channel
 	 *            - the channelname
-	 * @param clientId
-	 *            - the clientid you get if you registrate your program on
-	 *            twitch
 	 * @param accessToken
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
@@ -130,8 +115,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 */
 	@GET
 	@Path("/channels/{channel}/editors")
-	Users getEditorsFromChannel(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId,
-			@HeaderParam("Authorization") String accessToken);
+	Users getEditorsFromChannel(@PathParam("channel") String channel, @HeaderParam("Authorization") String accessToken);
 
 	/**
 	 * Update channel's properties.
@@ -147,9 +131,6 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            OAuth token. - channel_feed_enabled is optional: the Whether
 	 *            the channel's feed is enabled. Requires the channel owner's
 	 *            OAuth token.
-	 * @param clientId
-	 *            - the clientid you get if you registrate your program on
-	 *            twitch
 	 * @param accessToken
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
@@ -160,16 +141,13 @@ public interface ChannelsAPI extends TwitchAPI {
 	@PUT
 	@Path("/channels/{channel}")
 	Channel updateChannel(@PathParam("channel") String channel, ChannelChange payload,
-			@HeaderParam("Client-ID") String clientId, @HeaderParam("Authorization") String accessToken);
+			@HeaderParam("Authorization") String accessToken);
 
 	/**
 	 * Resets channel's stream key.
 	 * 
 	 * @param channel
 	 *            - the channelname
-	 * @param clientId
-	 *            - the clientid you get if you registrate your program on
-	 *            twitch
 	 * @param accessToken
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
@@ -178,8 +156,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 */
 	@DELETE
 	@Path("/channels/{channel}/stream_key")
-	Channel resetStreamKey(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId,
-			@HeaderParam("Authorization") String accessToken);
+	Channel resetStreamKey(@PathParam("channel") String channel, @HeaderParam("Authorization") String accessToken);
 
 	/**
 	 * Start commercial on channel with the specified {@code length}.
@@ -190,9 +167,6 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - Length of commercial break in seconds. Default value is 30.
 	 *            Valid values are 30, 60, 90, 120, 150, and 180. You can only
 	 *            trigger a commercial once every 8 minutes.
-	 * @param clientId
-	 *            - the clientid you get if you registrate your program on
-	 *            twitch
 	 * @param accessToken
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
@@ -204,16 +178,13 @@ public interface ChannelsAPI extends TwitchAPI {
 	@POST
 	@Path("/channels/{channel}/commercial")
 	Response startCommercial(@PathParam("channel") String channel, int length,
-			@HeaderParam("Client-ID") String clientId, @HeaderParam("Authorization") String accessToken);
+			@HeaderParam("Authorization") String accessToken);
 
 	/**
 	 * Returns a list of team objects :channel belongs to.
 	 * 
 	 * @param channel
 	 *            - the channelname
-	 * @param clientId
-	 *            - the clientid you get if you registrate your program on
-	 *            twitch
 	 * @param accessToken
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
@@ -222,7 +193,6 @@ public interface ChannelsAPI extends TwitchAPI {
 	 */
 	@GET
 	@Path("/channels/{channel}/teams")
-	Teams getChannelTeams(@PathParam("channel") String channel, @HeaderParam("Client-ID") String clientId,
-			@HeaderParam("Authorization") String accessToken);
+	Teams getChannelTeams(@PathParam("channel") String channel, @HeaderParam("Authorization") String accessToken);
 
 }
