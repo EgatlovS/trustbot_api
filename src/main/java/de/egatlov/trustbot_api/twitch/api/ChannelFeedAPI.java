@@ -1,5 +1,135 @@
 package de.egatlov.trustbot_api.twitch.api;
 
+import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
+
+import de.egatlov.trustbot_api.twitch.models.Post;
+import de.egatlov.trustbot_api.twitch.models.Posts;
+import de.egatlov.trustbot_api.twitch.models.Reaction;
+
 public interface ChannelFeedAPI extends TwitchAPI {
+
+	/**
+	 * Get a list of posts that belong to the channel's feed. Uses limit and
+	 * cursor pagination.
+	 * 
+	 * @param channel
+	 *            - the channelname
+	 * @param limit
+	 *            - Maximum number of objects in array. Default is 10. Maximum
+	 *            is 100.
+	 * @param cursor
+	 *            - Cursor value to begin next page.
+	 * @param accessToken
+	 *            - an oauth token which you get by implementing the
+	 *            twitch-oauth-api or just get it from
+	 *            http://twitchapps.com/tmi/
+	 * @return Returns a list of posts.
+	 */
+	@GET
+	@Path("/feed/{channel}/posts")
+	public Posts getPosts(@PathParam("channel") String channel, @DefaultValue("10") @QueryParam("limit") int limit,
+			@QueryParam("cursor") int cursor, @HeaderParam("Authorization") String accessToken);
+
+	/**
+	 * Create a post for a channel's feed.
+	 * 
+	 * @param channel
+	 *            - the channelname
+	 * @param content
+	 *            - Content of the post
+	 * @param share
+	 *            - When set to true, shares the post, with a link to the post
+	 *            URL, on the channel's Twitter if it's connected.
+	 * @param accessToken
+	 *            - an oauth token which you get by implementing the
+	 *            twitch-oauth-api or just get it from
+	 *            http://twitchapps.com/tmi/
+	 * @return Returns the post created.
+	 */
+	@POST
+	@Path("/feed/{channel}/posts")
+	public Post createPost(@PathParam("channel") String channel, String content, @QueryParam("share") boolean share,
+			@HeaderParam("Authorization") String accessToken);
+
+	/**
+	 * Get a specific post belonging to the channel.
+	 * 
+	 * @param id
+	 *            - ID of the specific post
+	 * @param channel
+	 *            - the channelname
+	 * @param accessToken
+	 *            - an oauth token which you get by implementing the
+	 *            twitch-oauth-api or just get it from
+	 *            http://twitchapps.com/tmi/
+	 * @return Returns a post.
+	 */
+	@GET
+	@Path("/feed/{channel}/posts/{id}")
+	public Post getPost(@PathParam("id") long id, @PathParam("channel") String channel,
+			@HeaderParam("Authorization") String accessToken);
+
+	/**
+	 * Delete a post.
+	 * 
+	 * @param id
+	 *            - ID of the specific post
+	 * @param channel
+	 *            - the channelname
+	 * @param accessToken
+	 *            - an oauth token which you get by implementing the
+	 *            twitch-oauth-api or just get it from
+	 *            http://twitchapps.com/tmi/
+	 */
+	@DELETE
+	@Path("/feed/{channel}/posts/{id}")
+	public void deletePost(@PathParam("id") long id, @PathParam("channel") String channel,
+			@HeaderParam("Authorization") String accessToken);
+
+	/**
+	 * Create a reaction to a post.
+	 * 
+	 * @param id
+	 *            - ID of the specific post
+	 * @param channel
+	 *            - the channelname
+	 * @param emoteId
+	 *            - Single emote id (ex: "25" => Kappa) or the string "endorse"
+	 * @param accessToken
+	 *            - an oauth token which you get by implementing the
+	 *            twitch-oauth-api or just get it from
+	 *            http://twitchapps.com/tmi/
+	 * @return Returns the reaction created.
+	 */
+	@POST
+	@Path("/feed/{channel}/posts/{id}/reactions")
+	public Reaction createReaction(@PathParam("id") long id, @PathParam("channel") String channel,
+			@QueryParam("emote_id") String emoteId, @HeaderParam("Authorization") String accessToken);
+
+	/**
+	 * Delete a reaction to a post.
+	 * 
+	 * @param id
+	 *            - ID of the specific post
+	 * @param channel
+	 *            - the channelname
+	 * @param emoteId
+	 *            - Single emote id (ex: "25" => Kappa) or the string "endorse"
+	 * @param accessToken
+	 *            - an oauth token which you get by implementing the
+	 *            twitch-oauth-api or just get it from
+	 *            http://twitchapps.com/tmi/
+	 */
+	@DELETE
+	@Path("/feed/{channel}/posts/{id}/reactions")
+	public void deleteReaction(@PathParam("id") long id, @PathParam("channel") String channel,
+			@QueryParam("emote_id") String emoteId, @HeaderParam("Authorization") String accessToken);
 
 }

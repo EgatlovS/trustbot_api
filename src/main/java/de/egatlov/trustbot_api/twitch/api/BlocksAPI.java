@@ -26,7 +26,10 @@ public interface BlocksAPI extends TwitchAPI {
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
 	 * @param limit
+	 *            - Maximum number of objects in array. Default is 25. Maximum
+	 *            is 100.
 	 * @param offset
+	 *            - Object offset for pagination. Default is 0.
 	 * @return Returns a list of blocks objects on :user's block list. List
 	 *         sorted by recency, newest first.
 	 */
