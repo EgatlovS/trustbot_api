@@ -16,8 +16,8 @@ import de.egatlov.trustbot_api.twitch.api.TwitchAPI;
  */
 public final class APIClient {
 
-	public static <T extends TwitchAPI> T buildFrom(Class<T> clazz) {
-		return buildFrom(clazz, "https://api.twitch.tv");
+	public static <T extends TwitchAPI> T buildFrom(Class<T> clazz, ClientRequestFilter... requestFilter) {
+		return buildFrom(clazz, "https://api.twitch.tv", requestFilter);
 	}
 
 	public static <T extends TwitchAPI> T buildFrom(Class<T> clazz, String url, ClientRequestFilter... requestFilter) {
