@@ -16,7 +16,7 @@ import de.egatlov.trustbot_api.twitch.models.Blocks;
 public interface BlocksAPI extends TwitchAPI {
 
 	/**
-	 * Returns a list of blocks objects on :user's block list. List sorted by
+	 * Returns block objects on {@code :username}'s block list. List sorted by
 	 * recency, newest first.
 	 * 
 	 * @param username
@@ -30,7 +30,7 @@ public interface BlocksAPI extends TwitchAPI {
 	 *            is 100.
 	 * @param offset
 	 *            - Object offset for pagination. Default is 0.
-	 * @return Returns a list of blocks objects on :user's block list. List
+	 * @return Returns block objects on {@code :username}'s block list. List
 	 *         sorted by recency, newest first.
 	 */
 	@GET
@@ -39,8 +39,9 @@ public interface BlocksAPI extends TwitchAPI {
 			@DefaultValue("25") @QueryParam("limit") int limit, @DefaultValue("0") @QueryParam("offset") int offset);
 
 	/**
-	 * Adds :target to :user's block list. :user is the authenticated user and
-	 * :target is user to be blocked.
+	 * Adds {@code :targetUsername} to {@code :username}'s block list.
+	 * {@code :username} is the authenticated user and {@code :targetUsername}
+	 * is user to be blocked.
 	 * 
 	 * @param username
 	 *            - your twitch username
@@ -50,7 +51,7 @@ public interface BlocksAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns a blocks object.
+	 * @return Returns a block object.
 	 */
 	@PUT
 	@Path("/users/{username}/blocks/{targetUsername}")
@@ -58,8 +59,9 @@ public interface BlocksAPI extends TwitchAPI {
 			@HeaderParam("Authorization") String accessToken);
 
 	/**
-	 * Removes :target from :user's block list. :user is the authenticated user
-	 * and :target is user to be unblocked.
+	 * Removes {@code :targetUsername} from {@code :username}'s block list.
+	 * {@code :username} is the authenticated user and {@code :targetUsername}
+	 * is user to be unblocked.
 	 * 
 	 * @param username
 	 *            - your twitch username
@@ -69,8 +71,9 @@ public interface BlocksAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return 204 No Content if successful. 404 Not Found if :target not on
-	 *         :user's block list. 422 Unprocessable Entity if delete failed.
+	 * @return {@code 204 No Content} if successful. {@code 404 Not Found} if
+	 *         {@code :targetUsername} not on {@code :username}'s block list.
+	 *         {@code 422 Unprocessable Entity} if delete failed.
 	 */
 	@DELETE
 	@Path("/users/{username}/blocks/{targetUsername}")

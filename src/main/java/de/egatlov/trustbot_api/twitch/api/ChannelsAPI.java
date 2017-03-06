@@ -41,8 +41,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns a channel object of authenticated user. Channel object
-	 *         includes stream key.
+	 * @return Returns a channel object.
 	 */
 	@GET
 	@Path("/channel/{channel}")
@@ -50,8 +49,8 @@ public interface ChannelsAPI extends TwitchAPI {
 			@HeaderParam("Authorization") String accessToken);
 
 	/**
-	 * Get a list of videos ordered by time of creation, starting with the most
-	 * recent from :channel.
+	 * Get videos ordered by time of creation, starting with the most recent
+	 * from {@code :channel}.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -64,9 +63,11 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - Returns only broadcasts when true. Otherwise only highlights
 	 *            are returned. Default is false.
 	 * @param hls
-	 *            - Returns only HLS VoDs when true. Otherwise only non-HLS VoDs
-	 *            are returned. Default is false.
-	 * @return Returns a list of videos.
+	 *            - If set to true, only returns streams using HLS. If set to
+	 *            false, only returns streams that are non-HLS. - Returns only
+	 *            HLS VoDs when true. Otherwise only non-HLS VoDs are returned.
+	 *            Default is false.
+	 * @return Returns videos.
 	 */
 	@GET
 	@Path("/channels/{channel}/videos")
@@ -76,7 +77,7 @@ public interface ChannelsAPI extends TwitchAPI {
 			@DefaultValue("false") @QueryParam("hls") boolean hls);
 
 	/**
-	 * Get a list of follow objects.
+	 * Get follow objects.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -94,7 +95,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 * @param direction
 	 *            - Creation date sorting direction. Default is desc. Valid
 	 *            values are asc and desc.
-	 * @return Returns a list of follow objects.
+	 * @return Returns follow objects.
 	 */
 	@GET
 	@Path("/channels/{channel}/follows")
@@ -103,7 +104,7 @@ public interface ChannelsAPI extends TwitchAPI {
 			@QueryParam("cursor") String cursor, @DefaultValue("desc") @QueryParam("direction") String direction);
 
 	/**
-	 * Get a list of user objects who are editors of :channel.
+	 * Get user objects who are editors of {@code :channel}.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -111,7 +112,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns a list of user objects who are editors.
+	 * @return Returns user objects who are editors.
 	 */
 	@GET
 	@Path("/channels/{channel}/editors")
@@ -135,8 +136,8 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns the Channel updated or 422 Unprocessable Entity if trying
-	 *         to set delay for a channel that is not partnered.
+	 * @return Returns the Channel updated or {@code 422 Unprocessable Entity}
+	 *         if trying to set delay for a channel that is not partnered.
 	 */
 	@PUT
 	@Path("/channels/{channel}")
@@ -171,9 +172,10 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return 204 No Content if successful. 422 Unprocessable Entity if
-	 *         commercial length not allowed, a commercial was ran less than 8
-	 *         minutes ago, or the channel is not partnered.
+	 * @return {@code 204 No Content} if successful.
+	 *         {@code 422 Unprocessable Entity} if commercial length not
+	 *         allowed, a commercial was ran less than 8 minutes ago, or the
+	 *         channel is not partnered.
 	 */
 	@POST
 	@Path("/channels/{channel}/commercial")
@@ -181,7 +183,7 @@ public interface ChannelsAPI extends TwitchAPI {
 			@HeaderParam("Authorization") String accessToken);
 
 	/**
-	 * Returns a list of team objects :channel belongs to.
+	 * Returns team objects {@code :channel} belongs to.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -189,7 +191,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns a list of team objects :channel belongs to.
+	 * @return Returns team objects {@code :channel} belongs to.
 	 */
 	@GET
 	@Path("/channels/{channel}/teams")

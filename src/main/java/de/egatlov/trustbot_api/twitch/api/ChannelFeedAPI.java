@@ -16,8 +16,8 @@ import de.egatlov.trustbot_api.twitch.models.Reaction;
 public interface ChannelFeedAPI extends TwitchAPI {
 
 	/**
-	 * Get a list of posts that belong to the channel's feed. Uses limit and
-	 * cursor pagination.
+	 * Get posts that belong to the channel's feed. Uses limit and cursor
+	 * pagination.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -30,11 +30,11 @@ public interface ChannelFeedAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns a list of posts.
+	 * @return Returns posts.
 	 */
 	@GET
 	@Path("/feed/{channel}/posts")
-	public Posts getPosts(@PathParam("channel") String channel, @DefaultValue("10") @QueryParam("limit") int limit,
+	Posts getPosts(@PathParam("channel") String channel, @DefaultValue("10") @QueryParam("limit") int limit,
 			@QueryParam("cursor") int cursor, @HeaderParam("Authorization") String accessToken);
 
 	/**
@@ -55,7 +55,7 @@ public interface ChannelFeedAPI extends TwitchAPI {
 	 */
 	@POST
 	@Path("/feed/{channel}/posts")
-	public Post createPost(@PathParam("channel") String channel, String content, @QueryParam("share") boolean share,
+	Post createPost(@PathParam("channel") String channel, String content, @QueryParam("share") boolean share,
 			@HeaderParam("Authorization") String accessToken);
 
 	/**
@@ -73,7 +73,7 @@ public interface ChannelFeedAPI extends TwitchAPI {
 	 */
 	@GET
 	@Path("/feed/{channel}/posts/{id}")
-	public Post getPost(@PathParam("id") long id, @PathParam("channel") String channel,
+	Post getPost(@PathParam("id") long id, @PathParam("channel") String channel,
 			@HeaderParam("Authorization") String accessToken);
 
 	/**
@@ -90,7 +90,7 @@ public interface ChannelFeedAPI extends TwitchAPI {
 	 */
 	@DELETE
 	@Path("/feed/{channel}/posts/{id}")
-	public void deletePost(@PathParam("id") long id, @PathParam("channel") String channel,
+	void deletePost(@PathParam("id") long id, @PathParam("channel") String channel,
 			@HeaderParam("Authorization") String accessToken);
 
 	/**
@@ -110,7 +110,7 @@ public interface ChannelFeedAPI extends TwitchAPI {
 	 */
 	@POST
 	@Path("/feed/{channel}/posts/{id}/reactions")
-	public Reaction createReaction(@PathParam("id") long id, @PathParam("channel") String channel,
+	Reaction createReaction(@PathParam("id") long id, @PathParam("channel") String channel,
 			@QueryParam("emote_id") String emoteId, @HeaderParam("Authorization") String accessToken);
 
 	/**
@@ -129,7 +129,7 @@ public interface ChannelFeedAPI extends TwitchAPI {
 	 */
 	@DELETE
 	@Path("/feed/{channel}/posts/{id}/reactions")
-	public void deleteReaction(@PathParam("id") long id, @PathParam("channel") String channel,
+	void deleteReaction(@PathParam("id") long id, @PathParam("channel") String channel,
 			@QueryParam("emote_id") String emoteId, @HeaderParam("Authorization") String accessToken);
 
 }

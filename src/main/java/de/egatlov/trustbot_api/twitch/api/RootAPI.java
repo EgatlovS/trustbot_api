@@ -20,6 +20,6 @@ public interface RootAPI extends TwitchAPI {
 	 *         authentication status
 	 */
 	@GET
-	public Root getInformation(@HeaderParam("Authorization") String accessToken);
+	Root getInformation(@HeaderParam("Authorization") String accessToken);
 
 }
