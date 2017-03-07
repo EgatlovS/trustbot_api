@@ -1,12 +1,13 @@
 package de.egatlov.trustbot_api.bot.config;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
- * PropertyConfig.java is an implementation of ConnectionConfiguration.java, which reads the
- * given values (oauthKey, name, etc.) from an PropertyFile, at the point it is
- * asked to return them.
+ * PropertyConfig.java is an implementation of ConnectionConfiguration.java,
+ * which reads the given values (oauthKey, name, etc.) from an PropertyFile, at
+ * the point it is asked to return them.
  * 
  * Created at: 23.02.2017
  * 
@@ -14,39 +15,52 @@ import java.nio.file.Paths;
  */
 public final class PropertyConfig implements ConnectionConfiguration {
 
-	private final Path path;
-
-	public PropertyConfig(Path path) {
-		this.path = path;
-	}
+	private final String url;
+	private final Properties properties;
 
 	public PropertyConfig(String url) {
-		this(Paths.get(url));
+		this.url = url;
+		this.properties = properties();
 	}
 
 	@Override
 	public String oauthKey() {
-		return null; // TODO read from propertyfile
+		return read("oauthKey");
 	}
 
 	@Override
 	public String name() {
-		return null; // TODO read from propertyfile
+		return read("name");
 	}
 
 	@Override
 	public String host() {
-		return null; // TODO read from propertyfile
+		return read("host");
 	}
 
 	@Override
 	public int port() {
-		return 0; // TODO read from propertyfile
+		return Integer.valueOf(read("port"));
 	}
 
 	@Override
 	public String channel() {
-		return null; // TODO read from propertyfile
+		return read("channel");
+	}
+
+	private String read(String key) {
+		return properties.getProperty(key);
+	}
+	
+	private Properties properties() {
+		InputStream propertyFile = PropertyConfig.class.getClassLoader().getResourceAsStream(url);
+		Properties properties = new Properties();
+		try {
+			properties.load(propertyFile);
+		} catch (IOException e) {
+			// TODO
+		}
+		return properties;
 	}
 
 }
