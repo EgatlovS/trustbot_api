@@ -47,7 +47,7 @@ public interface VideosAPI extends TwitchAPI {
 
 	/**
 	 * Get videos ordered by time of creation, starting with the most recent
-	 * from {@code :channel}.
+	 * from {@code channel}.
 	 * 
 	 * @param channel
 	 *            - the channelname

@@ -16,7 +16,7 @@ import de.egatlov.trustbot_api.twitch.models.Blocks;
 public interface BlocksAPI extends TwitchAPI {
 
 	/**
-	 * Returns blocks on {@code :username}'s block list. List sorted by
+	 * Returns blocks on {@code username}'s block list. List sorted by
 	 * recency, newest first.
 	 * 
 	 * @param username
@@ -30,7 +30,7 @@ public interface BlocksAPI extends TwitchAPI {
 	 *            is 100.
 	 * @param offset
 	 *            - Object offset for pagination. Default is 0.
-	 * @return Returns block objects on {@code :username}'s block list. List
+	 * @return Returns block objects on {@code username}'s block list. List
 	 *         sorted by recency, newest first.
 	 */
 	@GET
@@ -39,8 +39,8 @@ public interface BlocksAPI extends TwitchAPI {
 			@DefaultValue("25") @QueryParam("limit") int limit, @DefaultValue("0") @QueryParam("offset") int offset);
 
 	/**
-	 * Adds {@code :targetUsername} to {@code :username}'s block list.
-	 * {@code :username} is the authenticated user and {@code :targetUsername}
+	 * Adds {@code targetUsername} to {@code username}'s block list.
+	 * {@code username} is the authenticated user and {@code targetUsername}
 	 * is user to be blocked.
 	 * 
 	 * @param username
@@ -59,8 +59,8 @@ public interface BlocksAPI extends TwitchAPI {
 			@HeaderParam("Authorization") String accessToken);
 
 	/**
-	 * Removes {@code :targetUsername} from {@code :username}'s block list.
-	 * {@code :username} is the authenticated user and {@code :targetUsername}
+	 * Removes {@code targetUsername} from {@code username}'s block list.
+	 * {@code username} is the authenticated user and {@code targetUsername}
 	 * is user to be unblocked.
 	 * 
 	 * @param username
@@ -72,7 +72,7 @@ public interface BlocksAPI extends TwitchAPI {
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
 	 * @return {@code 204 No Content} if successful. {@code 404 Not Found} if
-	 *         {@code :targetUsername} not on {@code :username}'s block list.
+	 *         {@code targetUsername} not on {@code username}'s block list.
 	 *         {@code 422 Unprocessable Entity} if delete failed.
 	 */
 	@DELETE

@@ -43,7 +43,7 @@ public interface ChatAPI extends TwitchAPI {
 	Emoticons getEmoticons(@QueryParam("emotesets") String emoteSets);
 
 	/**
-	 * Get chat badges that can be used in the {@code :channel}'s chat.
+	 * Get chat badges that can be used in the {@code channel}'s chat.
 	 * 
 	 * @param channel
 	 *            - the channelname

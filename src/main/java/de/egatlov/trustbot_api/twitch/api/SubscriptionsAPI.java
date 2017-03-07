@@ -15,7 +15,7 @@ public interface SubscriptionsAPI extends TwitchAPI {
 
 	/**
 	 * Get subscriptions sorted by subscription relationship creation date which
-	 * contain users subscribed to {@code :channel}.
+	 * contain users subscribed to {@code channel}.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -40,7 +40,7 @@ public interface SubscriptionsAPI extends TwitchAPI {
 
 	/**
 	 * Get a subscription which includes the user if that user is subscribed.
-	 * Requires authentication for {@code :channel}.
+	 * Requires authentication for {@code channel}.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -60,7 +60,7 @@ public interface SubscriptionsAPI extends TwitchAPI {
 
 	/**
 	 * Get a channel that user subscribes to. Requires authentication for
-	 * {@code :user}.
+	 * {@code user}.
 	 * 
 	 * @param channel
 	 *            - the channelname

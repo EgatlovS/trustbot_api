@@ -60,7 +60,7 @@ public interface FollowsAPI extends TwitchAPI {
 	 *            - Sorting direction. Default is desc. Valid values are asc and
 	 *            desc.
 	 * @return Returns follows or a {@code 404 Not Found} if
-	 *         {@code :user} does not exist.
+	 *         {@code user} does not exist.
 	 */
 	@GET
 	@Path("/users/{user}/follows/channels")
@@ -77,15 +77,15 @@ public interface FollowsAPI extends TwitchAPI {
 	 * @param targetChannel
 	 *            - the target channel name.
 	 * @return Returns a follow or a {@code 404 Not Found} if
-	 *         {@code :user} is not following {@code :target} otherwise.
+	 *         {@code user} is not following {@code target} otherwise.
 	 */
 	@GET
 	@Path("/users/{user}/follows/channels/{target}")
 	Follow getUsersFollow(@PathParam("user") String username, @PathParam("target") String targetChannel);
 
 	/**
-	 * Adds {@code :user} to {@code :target}'s followers. {@code :user} is the
-	 * authenticated user's name and {@code :target} is the name of the channel
+	 * Adds {@code user} to {@code target}'s followers. {@code user} is the
+	 * authenticated user's name and {@code target} is the name of the channel
 	 * to be followed.
 	 * 
 	 * @param username
@@ -93,9 +93,9 @@ public interface FollowsAPI extends TwitchAPI {
 	 * @param targetChannel
 	 *            - the target channel name.
 	 * @param notifications
-	 *            - Whether {@code :user} should receive email/push
+	 *            - Whether {@code user} should receive email/push
 	 *            notifications (depending on their notification settings) when
-	 *            {@code :target} goes live. Default is false.
+	 *            {@code target} goes live. Default is false.
 	 * @param accessToken
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
@@ -110,8 +110,8 @@ public interface FollowsAPI extends TwitchAPI {
 			@HeaderParam("Authorization") String accessToken);
 
 	/**
-	 * Removes {@code :user} from {@code :target}'s followers. {@code :user} is
-	 * the authenticated user's name and {@code :target} is the name of the
+	 * Removes {@code user} from {@code target}'s followers. {@code user} is
+	 * the authenticated user's name and {@code target} is the name of the
 	 * channel to be unfollowed.
 	 * 
 	 * @param username

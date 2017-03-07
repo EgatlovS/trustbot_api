@@ -50,7 +50,7 @@ public interface ChannelsAPI extends TwitchAPI {
 
 	/**
 	 * Get videos ordered by time of creation, starting with the most recent
-	 * from {@code :channel}.
+	 * from {@code channel}.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -104,7 +104,7 @@ public interface ChannelsAPI extends TwitchAPI {
 			@QueryParam("cursor") String cursor, @DefaultValue("desc") @QueryParam("direction") String direction);
 
 	/**
-	 * Get users who are editors of {@code :channel}.
+	 * Get users who are editors of {@code channel}.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -183,7 +183,7 @@ public interface ChannelsAPI extends TwitchAPI {
 			@HeaderParam("Authorization") String accessToken);
 
 	/**
-	 * Returns teams {@code :channel} belongs to.
+	 * Returns teams {@code channel} belongs to.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -191,7 +191,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns teams {@code :channel} belongs to.
+	 * @return Returns teams {@code channel} belongs to.
 	 */
 	@GET
 	@Path("/channels/{channel}/teams")
