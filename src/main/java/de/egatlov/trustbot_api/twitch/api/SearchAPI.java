@@ -13,7 +13,7 @@ import de.egatlov.trustbot_api.twitch.models.Streams;
 public interface SearchAPI extends TwitchAPI {
 
 	/**
-	 * Get channel objects matching the search query.
+	 * Get channels matching the search query.
 	 * 
 	 * @param query
 	 *            - A url-encoded search query.
@@ -22,7 +22,7 @@ public interface SearchAPI extends TwitchAPI {
 	 *            is 100.
 	 * @param offset
 	 *            - Object offset for pagination. Default is 0.
-	 * @return Returns channel objects or a {@code 503 Service Unavailable} if
+	 * @return Returns channels or a {@code 503 Service Unavailable} if
 	 *         unable to retrieve search results.
 	 */
 	@GET
@@ -31,7 +31,7 @@ public interface SearchAPI extends TwitchAPI {
 			@DefaultValue("0") @QueryParam("offset") int offset);
 
 	/**
-	 * Get stream objects matching the search query.
+	 * Get streams matching the search query.
 	 * 
 	 * @param query
 	 *            - A url-encoded search query.
@@ -43,7 +43,7 @@ public interface SearchAPI extends TwitchAPI {
 	 *            is 100.
 	 * @param offset
 	 *            - Object offset for pagination. Default is 0.
-	 * @return Returns stream objects or a {@code 503 Service Unavailable} if
+	 * @return Returns streams or a {@code 503 Service Unavailable} if
 	 *         unable to retrieve search results.
 	 */
 	@GET
@@ -52,7 +52,7 @@ public interface SearchAPI extends TwitchAPI {
 			@DefaultValue("25") @QueryParam("limit") int limit, @DefaultValue("0") @QueryParam("offset") int offset);
 
 	/**
-	 * Get game objects matching the search query.
+	 * Get games matching the search query.
 	 * 
 	 * @param query
 	 *            - A url-encoded search query.
@@ -62,7 +62,7 @@ public interface SearchAPI extends TwitchAPI {
 	 * @param live
 	 *            - If true, only returns games that are live on at least one
 	 *            channel.
-	 * @return Returns game objects or a {@code 503 Service Unavailable} if
+	 * @return Returns games or a {@code 503 Service Unavailable} if
 	 *         unable to retrieve search results.
 	 */
 	@GET

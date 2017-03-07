@@ -21,18 +21,18 @@ import de.egatlov.trustbot_api.twitch.models.Videos;
 public interface ChannelsAPI extends TwitchAPI {
 
 	/**
-	 * Get a channel Object.
+	 * Get a channel.
 	 * 
 	 * @param channel
 	 *            - the channelname
-	 * @return Returns a channel object.
+	 * @return Returns a channel.
 	 */
 	@GET
 	@Path("/channels/{channel}")
 	Channel getChannel(@PathParam("channel") String channel);
 
 	/**
-	 * Get a channel object of the authenticated user. Channel object includes a
+	 * Get a channel of the authenticated user. Channel object includes a
 	 * stream key.
 	 * 
 	 * @param channel
@@ -41,7 +41,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns a channel object.
+	 * @return Returns a channel.
 	 */
 	@GET
 	@Path("/channel/{channel}")
@@ -77,7 +77,7 @@ public interface ChannelsAPI extends TwitchAPI {
 			@DefaultValue("false") @QueryParam("hls") boolean hls);
 
 	/**
-	 * Get follow objects.
+	 * Get follows.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -95,7 +95,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 * @param direction
 	 *            - Creation date sorting direction. Default is desc. Valid
 	 *            values are asc and desc.
-	 * @return Returns follow objects.
+	 * @return Returns follows.
 	 */
 	@GET
 	@Path("/channels/{channel}/follows")
@@ -104,7 +104,7 @@ public interface ChannelsAPI extends TwitchAPI {
 			@QueryParam("cursor") String cursor, @DefaultValue("desc") @QueryParam("direction") String direction);
 
 	/**
-	 * Get user objects who are editors of {@code :channel}.
+	 * Get users who are editors of {@code :channel}.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -112,7 +112,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns user objects who are editors.
+	 * @return Returns users who are editors.
 	 */
 	@GET
 	@Path("/channels/{channel}/editors")
@@ -136,7 +136,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns the Channel updated or {@code 422 Unprocessable Entity}
+	 * @return Returns the channel updated or {@code 422 Unprocessable Entity}
 	 *         if trying to set delay for a channel that is not partnered.
 	 */
 	@PUT
@@ -153,7 +153,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns the channel with reseted streamKey.
+	 * @return Returns the channel.
 	 */
 	@DELETE
 	@Path("/channels/{channel}/stream_key")
@@ -183,7 +183,7 @@ public interface ChannelsAPI extends TwitchAPI {
 			@HeaderParam("Authorization") String accessToken);
 
 	/**
-	 * Returns team objects {@code :channel} belongs to.
+	 * Returns teams {@code :channel} belongs to.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -191,7 +191,7 @@ public interface ChannelsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns team objects {@code :channel} belongs to.
+	 * @return Returns teams {@code :channel} belongs to.
 	 */
 	@GET
 	@Path("/channels/{channel}/teams")

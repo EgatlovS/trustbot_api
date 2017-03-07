@@ -14,17 +14,17 @@ import de.egatlov.trustbot_api.twitch.models.Streams;
 public interface StreamsAPI extends TwitchAPI {
 
 	/**
-	 * Get a stream object if live.
+	 * Get a stream if live.
 	 * 
-	 * @return Returns a stream object.
+	 * @return Returns a stream.
 	 */
 	@GET
 	@Path("/streams/{channel}/")
 	Stream getStream();
 
 	/**
-	 * Get stream objects that are queried by a number of parameters sorted by
-	 * number of viewers descending.
+	 * Get streams that are queried by a number of parameters sorted by number
+	 * of viewers descending.
 	 * 
 	 * @param game
 	 *            - Streams categorized under game.
@@ -41,7 +41,7 @@ public interface StreamsAPI extends TwitchAPI {
 	 * @param streamType
 	 *            - Only shows streams from a certain type. Permitted values:
 	 *            all, playlist, live
-	 * @return Returns stream objects.
+	 * @return Returns streams.
 	 */
 	@GET
 	@Path("/streams")
@@ -50,16 +50,16 @@ public interface StreamsAPI extends TwitchAPI {
 			@QueryParam("language") String language, @QueryParam("stream_type") String streamType);
 
 	/**
-	 * Get featured (promoted) stream objects. Note that the number of promoted
-	 * streams varies from day to day, and there is no guarantee on how many
-	 * streams will be promoted at a given time.
+	 * Get featured (promoted) streams. Note that the number of promoted streams
+	 * varies from day to day, and there is no guarantee on how many streams
+	 * will be promoted at a given time.
 	 * 
 	 * @param limit
 	 *            - Maximum number of objects in array. Default is 25. Maximum
 	 *            is 100.
 	 * @param offset
 	 *            - Object offset for pagination. Default is 0.
-	 * @return Returns featured objects.
+	 * @return Returns featureds.
 	 */
 	@GET
 	@Path("/streams/featured")
@@ -78,7 +78,7 @@ public interface StreamsAPI extends TwitchAPI {
 	CurrentStreamsSummary getCurrentStreamsSummary(@QueryParam("game") int game);
 
 	/**
-	 * Get stream objects that the authenticated user is following.
+	 * Get streams that the authenticated user is following.
 	 * 
 	 * @param limit
 	 *            - Maximum number of objects in array. Default is 25. Maximum
@@ -92,7 +92,7 @@ public interface StreamsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns stream objects.
+	 * @return Returns streams.
 	 */
 	@GET
 	@Path("/streams/followed")

@@ -27,11 +27,11 @@ public interface TeamsAPI extends TwitchAPI {
 			@DefaultValue("0") @QueryParam("offset") int offset);
 
 	/**
-	 * Get a team object for {@code :team}.
+	 * Get a team for {@code :team}.
 	 * 
 	 * @param team
 	 *            - the teams name
-	 * @return Returns a team object.
+	 * @return Returns a team.
 	 */
 	@GET
 	@Path("/teams/{team}")

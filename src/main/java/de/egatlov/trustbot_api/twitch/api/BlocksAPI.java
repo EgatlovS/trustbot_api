@@ -16,7 +16,7 @@ import de.egatlov.trustbot_api.twitch.models.Blocks;
 public interface BlocksAPI extends TwitchAPI {
 
 	/**
-	 * Returns block objects on {@code :username}'s block list. List sorted by
+	 * Returns blocks on {@code :username}'s block list. List sorted by
 	 * recency, newest first.
 	 * 
 	 * @param username
@@ -51,7 +51,7 @@ public interface BlocksAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns a block object.
+	 * @return Returns a block.
 	 */
 	@PUT
 	@Path("/users/{username}/blocks/{targetUsername}")

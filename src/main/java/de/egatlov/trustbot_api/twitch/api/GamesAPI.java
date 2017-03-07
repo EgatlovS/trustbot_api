@@ -10,7 +10,7 @@ import de.egatlov.trustbot_api.twitch.models.Games;
 public interface GamesAPI extends TwitchAPI {
 
 	/**
-	 * Get game objects sorted by number of current viewers on Twitch, most
+	 * Get games sorted by number of current viewers on Twitch, most
 	 * popular first.
 	 * 
 	 * @param limit
@@ -18,7 +18,7 @@ public interface GamesAPI extends TwitchAPI {
 	 *            is 100.
 	 * @param offset
 	 *            - Object offset for pagination. Default is 0.
-	 * @return Returns game objects or a {@code 503 Service Unvailable} if error
+	 * @return Returns games or a {@code 503 Service Unvailable} if error
 	 *         retrieving games status.
 	 */
 	@GET

@@ -8,9 +8,9 @@ import de.egatlov.trustbot_api.twitch.models.Ingests;
 public interface IngestsAPI extends TwitchAPI {
 
 	/**
-	 * Get ingest objects.
+	 * Get ingests.
 	 * 
-	 * @return Returns ingest objects or a {@code 503 Service Unavailable} if
+	 * @return Returns ingests or a {@code 503 Service Unavailable} if
 	 *         error retrieving ingest status.
 	 */
 	@GET

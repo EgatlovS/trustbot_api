@@ -14,8 +14,8 @@ import de.egatlov.trustbot_api.twitch.models.Subscriptions;
 public interface SubscriptionsAPI extends TwitchAPI {
 
 	/**
-	 * Get subscription objects sorted by subscription relationship creation
-	 * date which contain users subscribed to {@code :channel}.
+	 * Get subscriptions sorted by subscription relationship creation date which
+	 * contain users subscribed to {@code :channel}.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -29,7 +29,7 @@ public interface SubscriptionsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns subscription objects.
+	 * @return Returns subscriptions.
 	 */
 	@GET
 	@Path("/channels/{channel}/subscriptions")
@@ -39,8 +39,8 @@ public interface SubscriptionsAPI extends TwitchAPI {
 			@HeaderParam("Authorization") String accessToken);
 
 	/**
-	 * Get a subscription object which includes the user if that user is
-	 * subscribed. Requires authentication for {@code :channel}.
+	 * Get a subscription which includes the user if that user is subscribed.
+	 * Requires authentication for {@code :channel}.
 	 * 
 	 * @param channel
 	 *            - the channelname
@@ -50,8 +50,8 @@ public interface SubscriptionsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns a subscription object or a {@code 404 Not Found} if user
-	 *         is not subscribed.
+	 * @return Returns a subscription or a {@code 404 Not Found} if user is not
+	 *         subscribed.
 	 */
 	@GET
 	@Path("/channels/{channel}/subscriptions/{user}")
@@ -59,7 +59,7 @@ public interface SubscriptionsAPI extends TwitchAPI {
 			@HeaderParam("Authorization") String accessToken);
 
 	/**
-	 * Get a channel object that user subscribes to. Requires authentication for
+	 * Get a channel that user subscribes to. Requires authentication for
 	 * {@code :user}.
 	 * 
 	 * @param channel
@@ -70,7 +70,7 @@ public interface SubscriptionsAPI extends TwitchAPI {
 	 *            - an oauth token which you get by implementing the
 	 *            twitch-oauth-api or just get it from
 	 *            http://twitchapps.com/tmi/
-	 * @return Returns a channel object, a {@code 404 Not Found} if user is not
+	 * @return Returns a channel, a {@code 404 Not Found} if user is not
 	 *         subscribed or a {@code 422 Unprocessable Entity} if channel has
 	 *         no subscription program.
 	 */
