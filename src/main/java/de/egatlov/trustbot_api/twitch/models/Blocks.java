@@ -1,7 +1,26 @@
 package de.egatlov.trustbot_api.twitch.models;
 
+import java.util.List;
+
 public class Blocks {
+
 	/**
-	 * https://github.com/justintv/Twitch-API/blob/master/v3_resources/blocks.md#get-usersloginblocks
+	 * _links
 	 */
+	private final Links links;
+	private final List<Block> blocks;
+
+	public Blocks(Links links, List<Block> blocks) {
+		this.links = links;
+		this.blocks = blocks;
+	}
+
+	public Links links() {
+		return links;
+	}
+
+	public List<Block> blocks() {
+		return blocks;
+	}
+
 }
