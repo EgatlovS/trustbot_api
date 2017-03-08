@@ -1,5 +1,7 @@
 package de.egatlov.trustbot_api.twitch.models;
 
+import java.util.Date;
+
 public class User {
 
 	/**
@@ -9,7 +11,7 @@ public class User {
 	/**
 	 * updated_at
 	 */
-	private final String updatedAt;
+	private final Date updatedAt;
 	/**
 	 * display_name
 	 */
@@ -29,10 +31,10 @@ public class User {
 	/**
 	 * created_at
 	 */
-	private final String createdAt;
+	private final Date createdAt;
 
-	public User(Links links, String updatedAt, String displayName, String type, String bio, String name, Long id,
-			String logo, String createdAt) {
+	public User(Links links, Date updatedAt, String displayName, String type, String bio, String name, Long id,
+			String logo, Date createdAt) {
 		this.links = links;
 		this.updatedAt = updatedAt;
 		this.displayName = displayName;
@@ -48,7 +50,7 @@ public class User {
 		return links;
 	}
 
-	public String updatedAt() {
+	public Date updatedAt() {
 		return updatedAt;
 	}
 
@@ -76,7 +78,7 @@ public class User {
 		return logo;
 	}
 
-	public String createdAt() {
+	public Date createdAt() {
 		return createdAt;
 	}
 
