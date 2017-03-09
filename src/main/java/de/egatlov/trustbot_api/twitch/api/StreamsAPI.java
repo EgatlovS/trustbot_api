@@ -8,7 +8,7 @@ import javax.ws.rs.QueryParam;
 
 import de.egatlov.trustbot_api.twitch.models.CurrentStreamsSummary;
 import de.egatlov.trustbot_api.twitch.models.Featureds;
-import de.egatlov.trustbot_api.twitch.models.Stream;
+import de.egatlov.trustbot_api.twitch.models.StreamContainer;
 import de.egatlov.trustbot_api.twitch.models.Streams;
 
 public interface StreamsAPI extends TwitchAPI {
@@ -20,7 +20,7 @@ public interface StreamsAPI extends TwitchAPI {
 	 */
 	@GET
 	@Path("/streams/{channel}/")
-	Stream getStream();
+	StreamContainer getStream();
 
 	/**
 	 * Get streams that are queried by a number of parameters sorted by number
