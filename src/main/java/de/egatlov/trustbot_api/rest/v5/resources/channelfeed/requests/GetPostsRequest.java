@@ -13,7 +13,7 @@ import de.egatlov.trustbot_api.rest.v5.api.request.Request;
 import de.egatlov.trustbot_api.rest.v5.models.posts.Posts;
 
 /**
- * <h1>GetFeedPostsCall</h1> </br>
+ * <h1>GetPostsRequest</h1> </br>
  *
  * Gets posts from a specified channel feed. </br>
  * If authentication is provided, the user_ids array </br>
