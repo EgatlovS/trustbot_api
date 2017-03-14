@@ -13,7 +13,7 @@ import de.egatlov.trustbot_api.rest.v5.api.request.Request;
 import de.egatlov.trustbot_api.rest.v5.models.games.Games;
 
 /**
- * <h1>GetTopGames</h1></br>
+ * <h1>GetTopGamesRequest</h1></br>
  * 
  * Gets games sorted by number of current viewers on Twitch,</br>
  * most popular first.</br>
