@@ -1,4 +1,4 @@
-package de.egatlov.trustbot_api.rest.v3.models;
+package de.egatlov.trustbot_api.rest.v5.models.ingests;
 
 public class Ingest {
 

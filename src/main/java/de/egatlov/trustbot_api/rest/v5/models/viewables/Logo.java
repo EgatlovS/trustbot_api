@@ -1,13 +1,13 @@
-package de.egatlov.trustbot_api.rest.v3.models;
+package de.egatlov.trustbot_api.rest.v5.models.viewables;
 
-public class Box {
+public class Logo {
 
 	private final String large;
 	private final String medium;
 	private final String small;
 	private final String template;
 
-	public Box(String large, String medium, String small, String template) {
+	public Logo(String large, String medium, String small, String template) {
 		this.large = large;
 		this.medium = medium;
 		this.small = small;

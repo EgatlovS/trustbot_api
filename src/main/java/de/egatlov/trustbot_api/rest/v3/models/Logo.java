@@ -3,11 +3,8 @@ package de.egatlov.trustbot_api.rest.v3.models;
 public class Logo {
 
 	private final String large;
-
 	private final String medium;
-
 	private final String small;
-
 	private final String template;
 
 	public Logo(String large, String medium, String small, String template) {
