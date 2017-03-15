@@ -3,7 +3,6 @@ package de.egatlov.trustbot_api.rest.v5.models.collections;
 import java.util.Date;
 
 import de.egatlov.trustbot_api.rest.v5.models.users.User;
-import de.egatlov.trustbot_api.rest.v5.models.viewables.Thumbnails;
 
 public class Collection {
 

@@ -14,7 +14,7 @@ import de.egatlov.trustbot_api.rest.v5.api.request.Request;
 import de.egatlov.trustbot_api.rest.v5.models.ingests.Ingests;
 
 /**
- * <h1>GetIngestServerList</h1></br>
+ * <h1>GetIngestServerListRequest</h1></br>
  * 
  * Gets a list of Twitch ingest servers.</br>
  * The Twitch ingesting system is the first stop for a broadcast stream.</br>

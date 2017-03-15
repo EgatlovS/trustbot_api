@@ -13,7 +13,7 @@ import de.egatlov.trustbot_api.rest.v5.api.request.Request;
 import de.egatlov.trustbot_api.rest.v5.models.posts.Posts;
 
 /**
- * <h1>GetFeedPostsCall</h1> </br>
+ * <h1>GetPostsRequest</h1> </br>
  *
  * Gets posts from a specified channel feed. </br>
  * If authentication is provided, the user_ids array </br>
@@ -77,7 +77,7 @@ public final class GetPostsRequest extends Request<Posts> {
 	 *            - Maximum number of most-recent objects to return.
 	 */
 	public GetPostsRequest withLimitQueryParam(Long limit) {
-		if (limit != null) {
+		if (limit != null && !queryParams.containsKey("limit")) {
 			queryParams.add("limit", limit);
 		}
 		return this;
@@ -91,7 +91,7 @@ public final class GetPostsRequest extends Request<Posts> {
 	 *            results in a multi-page response.
 	 */
 	public GetPostsRequest withCursorQueryParam(String cursor) {
-		if (cursor != null) {
+		if (cursor != null && !queryParams.containsKey("cursor")) {
 			queryParams.add("cursor", cursor);
 		}
 		return this;
@@ -107,7 +107,7 @@ public final class GetPostsRequest extends Request<Posts> {
 	 *            are included in the response.
 	 */
 	public GetPostsRequest withCommentsQueryParam(Long comments) {
-		if (comments != null) {
+		if (comments != null && !queryParams.containsKey("comments")) {
 			queryParams.add("comments", comments);
 		}
 		return this;
@@ -124,7 +124,7 @@ public final class GetPostsRequest extends Request<Posts> {
 	 *            http://twitchapps.com/tmi/
 	 */
 	public GetPostsRequest withAuthorizationHeader(String accessToken) {
-		if (accessToken != null) {
+		if (accessToken != null && !headers.containsKey("Authorization")) {
 			headers.add("Authorization", accessToken);
 		}
 		return this;

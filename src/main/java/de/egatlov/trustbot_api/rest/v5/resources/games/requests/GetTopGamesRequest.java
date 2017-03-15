@@ -13,7 +13,7 @@ import de.egatlov.trustbot_api.rest.v5.api.request.Request;
 import de.egatlov.trustbot_api.rest.v5.models.games.Games;
 
 /**
- * <h1>GetTopGames</h1></br>
+ * <h1>GetTopGamesRequest</h1></br>
  * 
  * Gets games sorted by number of current viewers on Twitch,</br>
  * most popular first.</br>
@@ -66,7 +66,7 @@ public class GetTopGamesRequest extends Request<Games> {
 	 *            - Maximum number of most-recent objects to return.
 	 */
 	public GetTopGamesRequest withLimitQueryParam(Integer limit) {
-		if (limit != null) {
+		if (limit != null && !queryParams.containsKey("limit")) {
 			queryParams.add("limit", limit);
 		}
 		return this;
@@ -80,7 +80,7 @@ public class GetTopGamesRequest extends Request<Games> {
 	 *            - Object offset for pagination of results.
 	 */
 	public GetTopGamesRequest withOffsetQueryParam(Integer offset) {
-		if (offset != null) {
+		if (offset != null && !queryParams.containsKey("offset")) {
 			queryParams.add("offset", offset);
 		}
 		return this;

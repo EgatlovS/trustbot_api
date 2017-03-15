@@ -1,4 +1,4 @@
-package de.egatlov.trustbot_api.rest.v5.models.viewables;
+package de.egatlov.trustbot_api.rest.v5.models.collections;
 
 public class Thumbnails {
 
