@@ -16,18 +16,20 @@ import de.egatlov.trustbot_api.constants.EndOfLine;
  */
 public interface Bot extends Runnable {
 
+	void ouputTo(BufferedWriter writer);
+
+	void inputFrom(BufferedReader reader);
+
 	void stop();
 
 	class Simple implements Bot {
 
 		private boolean running;
+		private BufferedReader reader;
+		private BufferedWriter writer;
 		private final EndOfLine lineEnd;
-		private final BufferedReader reader;
-		private final BufferedWriter writer;
 
-		public Simple(BufferedReader reader, BufferedWriter writer) {
-			this.reader = reader;
-			this.writer = writer;
+		public Simple() {
 			this.lineEnd = new EndOfLine();
 		}
 
@@ -70,6 +72,16 @@ public interface Bot extends Runnable {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+
+		@Override
+		public void ouputTo(BufferedWriter writer) {
+			this.writer = writer;
+		}
+
+		@Override
+		public void inputFrom(BufferedReader reader) {
+			this.reader = reader;
 		}
 
 	}

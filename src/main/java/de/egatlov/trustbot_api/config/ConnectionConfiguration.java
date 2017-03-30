@@ -1,4 +1,4 @@
-package de.egatlov.trustbot_api.bot.config;
+package de.egatlov.trustbot_api.config;
 
 /**
  * ConnectionConfiguration.java

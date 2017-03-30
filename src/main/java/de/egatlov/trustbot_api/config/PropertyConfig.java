@@ -1,4 +1,4 @@
-package de.egatlov.trustbot_api.bot.config;
+package de.egatlov.trustbot_api.config;
 
 import java.io.IOException;
 import java.io.InputStream;

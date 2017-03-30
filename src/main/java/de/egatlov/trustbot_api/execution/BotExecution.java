@@ -1,9 +1,11 @@
-package de.egatlov.trustbot_api.bot;
+package de.egatlov.trustbot_api.execution;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import de.egatlov.trustbot_api.bot.Bot;
 
 /**
  * BotExecution.java is a Wrapper for bots to execute them.
@@ -35,7 +37,9 @@ public interface BotExecution {
 		@Override
 		public void start(BufferedReader reader, BufferedWriter writer) {
 			if (bot == null) {
-				this.bot = new Bot.Simple(reader, writer);
+				this.bot.inputFrom(reader);
+				this.bot.ouputTo(writer);
+				this.bot = new Bot.Simple();
 			}
 			executor.execute(bot);
 		}
@@ -47,5 +51,5 @@ public interface BotExecution {
 		}
 
 	}
-	
+
 }

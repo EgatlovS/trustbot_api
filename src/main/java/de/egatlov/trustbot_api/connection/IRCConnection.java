@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-import de.egatlov.trustbot_api.bot.BotExecution;
-import de.egatlov.trustbot_api.bot.config.ConnectionConfiguration;
+import de.egatlov.trustbot_api.config.ConnectionConfiguration;
 import de.egatlov.trustbot_api.constants.EndOfLine;
+import de.egatlov.trustbot_api.execution.BotExecution;
 
 /**
  * IRCConnection.java describes an IRC-Connection with an implementation of the
